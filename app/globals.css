@@ -119,6 +119,13 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+
+.dark .post-meta,
+.dark .post-tag,
+.dark .post-desc {
+  color: oklch(0.62 0 0);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

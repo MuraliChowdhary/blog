@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import Image from "next/image";
 
 const links = [
   { href: "/", label: "Home" },
@@ -13,14 +14,27 @@ export default function Navbar() {
       <nav className="max-w-2xl mx-auto flex items-center justify-between">
         {/* Left — name/logo */}
         <Link
-          href="/"
-          className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-        >
-          Murali
-        </Link>
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+            <div className="mb-4">
+                      <div className="w-8 h-8 rounded-full bg-muted border border-border overflow-hidden">
+                        {/* Replace src with your actual photo */}
+                        <Image
+                          src="/icons/logo.png"
+                          alt="Sudireddy"
+                          width={48}
+                          height={48}
+                          className="object-cover w-full h-full"
+                          priority
+                        />
+                      </div>
+                    </div>
+
+            </Link>
 
         {/* Center — nav links pill */}
-        <div className="flex items-center gap-1 border border-border rounded-full px-3 py-1.5 bg-card">
+        {/* <div className="flex items-center gap-1 border border-border rounded-full px-3 py-1.5 bg-card">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -30,7 +44,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-        </div>
+        </div> */}
 
         {/* Right — theme toggle */}
         <ThemeToggle />
