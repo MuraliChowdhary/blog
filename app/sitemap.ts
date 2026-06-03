@@ -1,21 +1,23 @@
-import { getAllPosts, getAllTags } from "@/lib/posts";
+import { getAllPosts, getAllTags } from "@/lib/sanity/fetch";
 import type { MetadataRoute } from "next";
 
 const baseUrl = "https://muralichowdhary.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts();
-  const tags = getAllTags();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [posts, tags] = await Promise.all([
+    getAllPosts(),
+    getAllTags(),
+  ]);
 
   const postUrls = posts.map((post) => ({
-    url: `${baseUrl}${post.url}`,
-    lastModified: new Date(post.date),
+    url: `${baseUrl}/blog/${post.slug.current}`,
+    lastModified: new Date(post.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const tagUrls = tags.map((tag) => ({
-    url: `${baseUrl}/tags/${tag}`,
+    url: `${baseUrl}/tags/${encodeURIComponent(tag)}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.5,

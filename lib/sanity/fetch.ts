@@ -1,46 +1,26 @@
-
 import { client } from "./client";
-import {
-  allPostsQuery,
-  postBySlugQuery,
-  allSlugsQuery,
-  allTagsQuery,
-  recentPostsQuery,
-} from "./queries";
+import { POST_QUERY, POSTS_QUERY, RECENT_POSTS_QUERY, SLUGS_QUERY, TAGS_QUERY,POSTS_BY_TAG_QUERY } from "./queries";
+import { SanityPost } from "./types";
 
-export type SanityPost = {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  description: string;
-  publishedAt: string;
-  tags: string[];
-  featured: boolean;
-  coverImage?: {
-    asset: { url: string };
-    alt?: string;
-  };
-  body?: unknown[];
-};
 
 export async function getAllPosts(): Promise<SanityPost[]> {
-  return client.fetch(allPostsQuery);
+  return client.fetch(POSTS_QUERY);
 }
 
 export async function getPostBySlug(slug: string): Promise<SanityPost | null> {
-  return client.fetch(postBySlugQuery, { slug });
+  return client.fetch(POST_QUERY, { slug });
 }
 
 export async function getAllSlugs(): Promise<{ slug: string }[]> {
-  return client.fetch(allSlugsQuery);
+  return client.fetch(SLUGS_QUERY);
 }
 
 export async function getAllTags(): Promise<string[]> {
-  return client.fetch(allTagsQuery);
+  return client.fetch(TAGS_QUERY);
 }
 
 export async function getRecentPosts(): Promise<SanityPost[]> {
-  return client.fetch(recentPostsQuery);
+  return client.fetch(RECENT_POSTS_QUERY);
 }
 
 export function formatDate(dateString: string): string {
@@ -50,6 +30,16 @@ export function formatDate(dateString: string): string {
     day: "numeric",
   });
 }
+
+export async function getPostsByTag(
+  tag: string
+): Promise<SanityPost[]> {
+  return client.fetch(
+    POSTS_BY_TAG_QUERY,
+    { tag } as Record<string, string>
+  );
+}
+
 
 export function getReadTime(body: unknown[]): string {
   const text = JSON.stringify(body);

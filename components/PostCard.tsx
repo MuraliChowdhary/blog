@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { formatDate } from "@/lib/posts";
-import type { Post } from "contentlayer/generated";
+import { SanityPost } from "@/lib/sanity/types";
+// import type { Post } from "contentlayer/generated";
 
-export default function PostCard({ post }: { post: Post }) {
+export default function PostCard({ post }: { post: SanityPost }) {
   return (
     <article className="group py-6 border-b border-border last:border-0">
-      <Link href={post.url} className="block space-y-2">
+      <Link href={`/blog/${post.slug.current}`} className="block space-y-2">
 
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
@@ -59,9 +59,9 @@ export default function PostCard({ post }: { post: Post }) {
             color: "oklch(0.58 0 0)",
           }}
         >
-          <span>{formatDate(post.date)}</span>
+          {/* <span>{formatDate(post.date)}</span>
           <span>·</span>
-          <span>{post.readTime}</span>
+          <span>{post.readTime}</span> */}
         </div>
       </Link>
     </article>

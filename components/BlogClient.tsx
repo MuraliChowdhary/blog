@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import type { Post } from "contentlayer/generated";
+import { useState, useMemo } from "react"; 
 import PostCard from "@/components/PostCard";
+import { SanityPost } from "@/lib/sanity/types";
 
 type Props = {
-  posts: Post[];
+  posts: SanityPost[];
   tags: string[];
 };
 
@@ -22,7 +22,7 @@ export default function BlogClient({ posts, tags }: Props) {
       const matchesQuery = query.trim()
         ? post.title.toLowerCase().includes(query.toLowerCase()) ||
           post.description.toLowerCase().includes(query.toLowerCase()) ||
-          post.tags?.some((t) =>
+          post.tags?.some((t : any) =>
             t.toLowerCase().includes(query.toLowerCase())
           )
         : true;
@@ -157,7 +157,7 @@ export default function BlogClient({ posts, tags }: Props) {
       ) : (
         <div>
           {filtered.map((post) => (
-            <PostCard key={post.slug} post={post} />
+            <PostCard key={post.slug.current} post={post} />
           ))}
         </div>
       )}

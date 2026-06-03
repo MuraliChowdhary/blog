@@ -1,55 +1,49 @@
-import { groq } from "next-sanity";
-
-// All published posts — for blog list
-export const allPostsQuery = groq`
-  *[_type == "post" && published == true] | order(publishedAt desc) {
+// All published posts — blog list + home
+export const POSTS_QUERY = `
+  *[_type == "post" && defined(slug.current) && published == true]
+  | order(publishedAt desc) {
     _id,
     title,
     slug,
     description,
     publishedAt,
     tags,
-    featured,
-    coverImage {
-      asset->,
-      alt
-    }
+    featured
   }
 `;
 
-// Single post by slug — for article page
-export const postBySlugQuery = groq`
-  *[_type == "post" && slug.current == $slug && published == true][0] {
+// Single post by slug
+export const POST_QUERY = `
+  *[_type == "post" && slug.current == $slug][0] {
     _id,
     title,
     slug,
     description,
     publishedAt,
     tags,
-    featured,
-    coverImage {
-      asset->,
-      alt
-    },
+    coverImage,
     body
   }
 `;
 
-// All slugs — for generateStaticParams
-export const allSlugsQuery = groq`
-  *[_type == "post" && published == true] {
+// All slugs for generateStaticParams
+export const SLUGS_QUERY = `
+  *[_type == "post" && defined(slug.current) && published == true] {
     "slug": slug.current
   }
 `;
 
 // All tags
-export const allTagsQuery = groq`
-  array::unique(*[_type == "post" && published == true].tags[])
+export const TAGS_QUERY = `
+  array::unique(
+    *[_type == "post" && published == true].tags[]
+  )
 `;
 
-// Featured posts — for home page
-export const featuredPostsQuery = groq`
-  *[_type == "post" && published == true && featured == true] | order(publishedAt desc)[0...3] {
+// Recent 3 for home page
+export const RECENT_POSTS_QUERY = `
+  *[_type == "post" && defined(slug.current) && published == true]
+  | order(publishedAt desc)[0...3] {
     _id,
     title,
     slug,
@@ -59,14 +53,20 @@ export const featuredPostsQuery = groq`
   }
 `;
 
-// Recent posts — for home page fallback
-export const recentPostsQuery = groq`
-  *[_type == "post" && published == true] | order(publishedAt desc)[0...3] {
+
+export const POSTS_BY_TAG_QUERY = `
+  *[
+    _type == "post" &&
+    published == true &&
+    $tag in tags
+  ]
+  | order(publishedAt desc) {
     _id,
     title,
     slug,
     description,
     publishedAt,
-    tags
+    tags,
+    featured
   }
 `;
