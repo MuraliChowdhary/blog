@@ -1,0 +1,26 @@
+{
+  "title": "Hello World — Why I Write",
+  "description": "First post. What this blog is about and why I decided to start writing publicly.",
+  "date": "2026-06-02T00:00:00.000Z",
+  "tags": [
+    "meta",
+    "writing"
+  ],
+  "published": true,
+  "body": {
+    "raw": "\nWriting forces clarity. If you can't explain it simply, you don't understand it yet.\n\n## Why public writing\n\nEvery system I debug, every architecture decision I question, every tool I benchmark — the act of writing about it forces me to actually understand it.\n\nThis blog is that process made visible.\n\n## What you will find here\n\nDeep dives on backend systems. Real project breakdowns. Architecture decisions I got wrong. Tools I benchmark. Things I build in public.\n\n### System design\n\nCAP theorem in production. Distributed locks. Circuit breakers. Not theory — real decisions from real systems.\n\n### Backend engineering\n\nJava, Go, Node. FastAPI. Message queues. Cache invalidation. The hard parts.\n\n### AI and LLMs\n\nRAG pipelines. Vector databases. Embedding strategies. Building on top of models without getting burned.\n\n## Why now\n\nBecause I have been consuming for too long. It is time to produce.\n\nLet us build in public.",
+    "code": "var Component=(()=>{var u=Object.create;var s=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,y=Object.prototype.hasOwnProperty;var b=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),w=(i,e)=>{for(var t in e)s(i,t,{get:e[t],enumerable:!0})},o=(i,e,t,d)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of g(e))!y.call(i,r)&&r!==t&&s(i,r,{get:()=>e[r],enumerable:!(d=p(e,r))||d.enumerable});return i};var f=(i,e,t)=>(t=i!=null?u(m(i)):{},o(e||!i||!i.__esModule?s(t,\"default\",{value:i,enumerable:!0}):t,i)),I=i=>o(s({},\"__esModule\",{value:!0}),i);var h=b((W,a)=>{a.exports=_jsx_runtime});var k={};w(k,{default:()=>l,frontmatter:()=>x});var n=f(h()),x={title:\"Hello World \\u2014 Why I Write\",description:\"First post. What this blog is about and why I decided to start writing publicly.\",date:\"2026-06-02\",tags:[\"meta\",\"writing\"],published:!0};function c(i){let e={a:\"a\",h2:\"h2\",h3:\"h3\",p:\"p\",...i.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"Writing forces clarity. If you can't explain it simply, you don't understand it yet.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"why-public-writing\",children:(0,n.jsx)(e.a,{href:\"#why-public-writing\",children:\"Why public writing\"})}),`\n`,(0,n.jsx)(e.p,{children:\"Every system I debug, every architecture decision I question, every tool I benchmark \\u2014 the act of writing about it forces me to actually understand it.\"}),`\n`,(0,n.jsx)(e.p,{children:\"This blog is that process made visible.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"what-you-will-find-here\",children:(0,n.jsx)(e.a,{href:\"#what-you-will-find-here\",children:\"What you will find here\"})}),`\n`,(0,n.jsx)(e.p,{children:\"Deep dives on backend systems. Real project breakdowns. Architecture decisions I got wrong. Tools I benchmark. Things I build in public.\"}),`\n`,(0,n.jsx)(e.h3,{id:\"system-design\",children:(0,n.jsx)(e.a,{href:\"#system-design\",children:\"System design\"})}),`\n`,(0,n.jsx)(e.p,{children:\"CAP theorem in production. Distributed locks. Circuit breakers. Not theory \\u2014 real decisions from real systems.\"}),`\n`,(0,n.jsx)(e.h3,{id:\"backend-engineering\",children:(0,n.jsx)(e.a,{href:\"#backend-engineering\",children:\"Backend engineering\"})}),`\n`,(0,n.jsx)(e.p,{children:\"Java, Go, Node. FastAPI. Message queues. Cache invalidation. The hard parts.\"}),`\n`,(0,n.jsx)(e.h3,{id:\"ai-and-llms\",children:(0,n.jsx)(e.a,{href:\"#ai-and-llms\",children:\"AI and LLMs\"})}),`\n`,(0,n.jsx)(e.p,{children:\"RAG pipelines. Vector databases. Embedding strategies. Building on top of models without getting burned.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"why-now\",children:(0,n.jsx)(e.a,{href:\"#why-now\",children:\"Why now\"})}),`\n`,(0,n.jsx)(e.p,{children:\"Because I have been consuming for too long. It is time to produce.\"}),`\n`,(0,n.jsx)(e.p,{children:\"Let us build in public.\"})]})}function l(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,{...i,children:(0,n.jsx)(c,{...i})}):c(i)}return I(k);})();\n;return Component;"
+  },
+  "_id": "blog/hello-world.mdx",
+  "_raw": {
+    "sourceFilePath": "blog/hello-world.mdx",
+    "sourceFileName": "hello-world.mdx",
+    "sourceFileDir": "blog",
+    "contentType": "mdx",
+    "flattenedPath": "blog/hello-world"
+  },
+  "type": "Post",
+  "slug": "hello-world",
+  "readTime": "1 min read",
+  "url": "/blog/hello-world"
+}
