@@ -18,20 +18,7 @@ export default async function BlogPage() {
   ]);
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-12">
-      <div className="mb-10">
-        <h1 className="text-2xl font-bold tracking-tight mb-2"
-            style={{ fontFamily: "var(--font-sans)" }}>
-          Writing
-        </h1>
-        <p style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.875rem",
-          color: "oklch(0.52 0 0)",
-        }}>
-          Thoughts on systems, backend engineering, and building things that last.
-        </p>
-      </div>
+    <div className="max-w-2xl mx-auto px-6 py-6">
 
       <BlogClient posts={posts} tags={tags ?? []} />
     </div>
