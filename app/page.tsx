@@ -148,7 +148,7 @@ export default async function BlogPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">
-      <div className="mb-10">
+      {/* <div className="mb-10">
         <h1 className="text-2xl font-bold tracking-tight mb-2"
             style={{ fontFamily: "var(--font-sans)" }}>
           Writing
@@ -160,7 +160,7 @@ export default async function BlogPage() {
         }}>
           Thoughts on systems, backend engineering, and building things that last.
         </p>
-      </div>
+      </div> */}
 
       <BlogClient posts={posts} tags={tags ?? []} />
     </div>
