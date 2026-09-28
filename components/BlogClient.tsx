@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react"; 
+import { useState, useMemo } from "react";
 import PostCard from "@/components/PostCard";
 import { SanityPost } from "@/lib/sanity/types";
 
@@ -14,16 +14,18 @@ export default function BlogClient({ posts, tags }: Props) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
     return posts.filter((post) => {
       const matchesTag = activeTag
         ? post.tags?.includes(activeTag)
         : true;
 
-      const matchesQuery = query.trim()
-        ? post.title.toLowerCase().includes(query.toLowerCase()) ||
-          post.description.toLowerCase().includes(query.toLowerCase()) ||
-          post.tags?.some((t : any) =>
-            t.toLowerCase().includes(query.toLowerCase())
+      const matchesQuery = normalizedQuery
+        ? post.title.toLowerCase().includes(normalizedQuery) ||
+          post.description.toLowerCase().includes(normalizedQuery) ||
+          post.tags?.some((tag) =>
+            tag.toLowerCase().includes(normalizedQuery)
           )
         : true;
 
@@ -33,10 +35,8 @@ export default function BlogClient({ posts, tags }: Props) {
 
   return (
     <div>
-
-      {/* Search bar */}
+      {/* Search */}
       <div className="relative mb-6">
-        {/* Search icon */}
         <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
           <svg
             width="14"
@@ -45,7 +45,8 @@ export default function BlogClient({ posts, tags }: Props) {
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            style={{ color: "oklch(0.6 0 0)" }}
+            className="text-muted-foreground"
+            aria-hidden="true"
           >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
@@ -57,18 +58,42 @@ export default function BlogClient({ posts, tags }: Props) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search posts..."
+          aria-label="Search posts"
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "0.875rem",
           }}
-          className="w-full pl-9 pr-4 py-2.5 rounded-2xl border border-border bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-border transition-all"
+          className="
+            w-full
+            pl-9
+            pr-10
+            py-2.5
+            rounded-2xl
+            border
+            border-border
+            bg-background
+            text-foreground
+            placeholder:text-muted-foreground
+            focus:outline-none
+            focus:ring-1
+            focus:ring-ring
+            transition-all
+          "
         />
 
-        {/* Clear button */}
+        {/* Clear */}
         {query && (
           <button
             onClick={() => setQuery("")}
-            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            className="
+              absolute
+              right-3.5
+              top-1/2
+              -translate-y-1/2
+              text-muted-foreground
+              hover:text-foreground
+              transition-colors
+            "
             aria-label="Clear search"
           >
             <svg
@@ -78,6 +103,7 @@ export default function BlogClient({ posts, tags }: Props) {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
+              aria-hidden="true"
             >
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
@@ -85,17 +111,28 @@ export default function BlogClient({ posts, tags }: Props) {
         )}
       </div>
 
-      {/* Tag filters */}
+      {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-8">
-        {/* All button */}
+        {/* All */}
         <button
           onClick={() => setActiveTag(null)}
-          style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem" }}
-          className={`px-3 py-1 rounded-full border transition-colors ${
-            activeTag === null
-              ? "border-foreground text-foreground bg-foreground/5"
-              : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
-          }`}
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.75rem",
+          }}
+          className={`
+            px-3
+            py-1
+            rounded-full
+            border
+            transition-colors
+
+            ${
+              activeTag === null
+                ? "border-foreground text-foreground bg-foreground/5"
+                : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+            }
+          `}
         >
           all
         </button>
@@ -103,13 +140,26 @@ export default function BlogClient({ posts, tags }: Props) {
         {tags.map((tag) => (
           <button
             key={tag}
-            onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem" }}
-            className={`px-3 py-1 rounded-full border transition-colors ${
-              activeTag === tag
-                ? "border-foreground text-foreground bg-foreground/5"
-                : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
-            }`}
+            onClick={() =>
+              setActiveTag(activeTag === tag ? null : tag)
+            }
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+            }}
+            className={`
+              px-3
+              py-1
+              rounded-full
+              border
+              transition-colors
+
+              ${
+                activeTag === tag
+                  ? "border-foreground text-foreground bg-foreground/5"
+                  : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+              }
+            `}
           >
             #{tag}
           </button>
@@ -118,11 +168,10 @@ export default function BlogClient({ posts, tags }: Props) {
 
       {/* Result count */}
       <div
-        className="mb-4"
+        className="mb-4 text-muted-foreground"
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: "0.75rem",
-          color: "oklch(0.58 0 0)",
         }}
       >
         {filtered.length === posts.length
@@ -130,26 +179,36 @@ export default function BlogClient({ posts, tags }: Props) {
           : `${filtered.length} of ${posts.length} posts`}
       </div>
 
-      {/* Post list */}
+      {/* Results */}
       {filtered.length === 0 ? (
         <div className="py-16 text-center">
           <p
+            className="text-muted-foreground"
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "0.875rem",
-              color: "oklch(0.55 0 0)",
             }}
           >
             No posts match &quot;{query}&quot;
           </p>
+
           <button
-            onClick={() => { setQuery(""); setActiveTag(null); }}
+            onClick={() => {
+              setQuery("");
+              setActiveTag(null);
+            }}
+            className="
+              mt-3
+              text-muted-foreground
+              hover:text-foreground
+              transition-colors
+              underline
+              underline-offset-4
+            "
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "0.8rem",
-              color: "oklch(0.5 0 0)",
             }}
-            className="mt-3 hover:text-foreground transition-colors underline underline-offset-4"
           >
             Clear filters
           </button>
@@ -157,7 +216,10 @@ export default function BlogClient({ posts, tags }: Props) {
       ) : (
         <div>
           {filtered.map((post) => (
-            <PostCard key={post.slug.current} post={post} />
+            <PostCard
+              key={post.slug.current}
+              post={post}
+            />
           ))}
         </div>
       )}
