@@ -354,9 +354,21 @@ html {
 
 /* Selection color */
 ::selection {
-  background: hsl(var(--foreground) / 0.12);
+  background: oklch(0.72 0.12 250 / 0.35);
+  color: inherit;
 }
 
+.dark ::selection {
+  background: oklch(0.65 0.12 250 / 0.45);
+  color: inherit;
+}
+
+/* Make article content explicitly selectable */
+.prose,
+.prose * {
+  user-select: text;
+  -webkit-user-select: text;
+}
 /* Focus ring */
 :focus-visible {
   outline: 2px solid hsl(var(--foreground) / 0.4);
