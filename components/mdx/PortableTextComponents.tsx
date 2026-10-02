@@ -57,41 +57,54 @@ export const portableTextComponents: PortableTextComponents = {
     ),
 
     // Image with caption
-    image: ({ value }) => {
-      const imageUrl = urlFor(value as SanityImageSource)
-        ?.width(800)
-        .url();
+    // Image with caption
+image: ({ value }) => {
+  const imageUrl = urlFor(value as SanityImageSource)
+    ?.width(1200)
+    .fit("max")
+    .auto("format")
+    .quality(75)
+    .url();
 
-      if (!imageUrl) return null;
+  if (!imageUrl) return null;
 
-      return (
-        <figure className="my-8">
-          <div className="relative w-full overflow-hidden rounded-lg border border-border">
-            <Image
-              src={imageUrl}
-              alt={value.alt ?? ""}
-              width={800}
-              height={450}
-              className="w-full h-auto"
-            />
-          </div>
+  return (
+    <figure className="my-10 flex flex-col items-center">
+      <div className="justify-center">
+        <Image
+          src={imageUrl}
+          alt={value.alt ?? ""}
+          width={1200}
+          height={800}
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="
+            h-auto
+            max-h-[650px]
+            w-auto
+            max-w-full
+            object-contain
+          "
+        />
+      </div>
 
-          {value.caption && (
-            <figcaption
-              className="
-                mt-2
-                text-center
-                font-mono
-                text-[0.78rem]
-                text-muted-foreground
-              "
-            >
-              {value.caption}
-            </figcaption>
-          )}
-        </figure>
-      );
-    },
+      {value.caption && (
+        <figcaption
+          className="
+            mt-3
+            max-w-2xl
+            text-center
+            font-mono
+            text-[0.78rem]
+            leading-relaxed
+            text-muted-foreground
+          "
+        >
+          {value.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+},
   },
 
   // Portable Text blocks
@@ -248,21 +261,21 @@ export const portableTextComponents: PortableTextComponents = {
     ),
 
     link: ({ value, children }) => (
-      <a
-        href={value?.href}
-        target={value?.blank ? "_blank" : "_self"}
-        rel="noopener noreferrer"
-        className="
-          text-foreground
-          underline
-          underline-offset-[3px]
-          decoration-muted-foreground
-          transition-colors
-          hover:decoration-foreground
-        "
-      >
-        {children}
-      </a>
-    ),
+  <a
+    href={value?.href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="
+      text-foreground
+      underline
+      underline-offset-[3px]
+      decoration-muted-foreground
+      transition-colors
+      hover:decoration-foreground
+    "
+  >
+    {children}
+  </a>
+),
   },
 };

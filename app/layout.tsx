@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import { getAllPosts } from "@/lib/sanity/fetch";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://muralichowdhary.com"),
@@ -73,11 +74,12 @@ export const metadata: Metadata = {
 //   display: "swap",
 // });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const posts = await getAllPosts();
   return (
     <html lang="en" className={GeistSans.className}>
       <body>
@@ -88,7 +90,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="min-h-screen flex flex-col">
-            <Navbar />
+            <Navbar posts={posts}/>
             <main className="flex-1">
               {children}
             </main>

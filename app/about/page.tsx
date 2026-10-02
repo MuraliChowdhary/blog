@@ -21,7 +21,7 @@ export default function AboutPage() {
           I am a software engineer at{" "}
           <span className="text-foreground font-semibold">Accenture</span>,
           working on backend systems, distributed infrastructure, and
-          AI-integrated platforms. My current stack is Java, AWS, and MySQL —
+          AI-integrated platforms. My current stack is Java, AWS, and Postgresql—
           with deep sidequests into RAG pipelines, FastAPI, and LLM tooling.
         </p>
 
@@ -31,11 +31,11 @@ export default function AboutPage() {
           that it works.
         </p>
 
-        <p>
+        {/* <p>
           Outside engineering, I read the Bhagavad Gita, think about financial
           independence, and occasionally write about the intersection of
           discipline and craft.
-        </p>
+        </p> */}
 
         <p>
           This blog is where I think out loud. Every post is something I
@@ -66,7 +66,7 @@ export default function AboutPage() {
         <ul className="space-y-2 text-sm font-mono">
           <li>
             <Link
-              href="https://x.com/yourusername"
+              href="https://x.com/MSudireddy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -76,7 +76,7 @@ export default function AboutPage() {
           </li>
           <li>
             <Link
-              href="https://github.com/yourusername"
+              href="https://github.com/MuraliChowdhary"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -86,7 +86,7 @@ export default function AboutPage() {
           </li>
           <li>
             <Link
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/sudireddy-murali-05a10b277/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -96,7 +96,7 @@ export default function AboutPage() {
           </li>
           <li>
             <Link
-              href="mailto:you@email.com"
+              href="mailto:muralisudireddy0@gmail.com"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Email →

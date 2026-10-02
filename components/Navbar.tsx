@@ -1,6 +1,9 @@
 import Link from "next/link";
-import ThemeToggle from "@/components/ThemeToggle";
 import Image from "next/image";
+import ThemeToggle from "@/components/ThemeToggle";
+import { Search } from "lucide-react";
+import NavbarSearch from "./NavbarSearch";
+import { SanityPost } from "@/lib/sanity/types";
 
 const links = [
   { href: "/", label: "Home" },
@@ -8,46 +11,72 @@ const links = [
   { href: "/about", label: "About" },
 ];
 
-export default function Navbar() {
+type Props = {
+  posts: SanityPost[];
+};
+
+export default function Navbar({posts}:Props) {
   return (
-    <header className="w-full py-6 px-6">
-      <nav className="max-w-2xl mx-auto flex items-center justify-between">
-        {/* Left — name/logo */}
+    <header className="w-full border-b border-border">
+      <nav
+        className="
+          mx-auto
+          flex
+          max-w-5xl
+          items-center
+          justify-between
+          px-6
+          py-4
+        "
+      >
+        {/* Left — Logo */}
         <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-            <div className="mb-4">
-                      <div className="w-8 h-8 rounded-full bg-muted border border-border overflow-hidden">
-                        {/* Replace src with your actual photo */}
-                        <Image
-                          src="/icons/logo.png"
-                          alt="Sudireddy"
-                          width={48}
-                          height={48}
-                          className="object-cover w-full h-full"
-                          priority
-                        />
-                      </div>
-                    </div>
+          href="/"
+          className="flex shrink-0 items-center gap-3"
+          aria-label="Sudireddy home"
+        >
+          <div className="relative h-9 w-9 overflow-hidden rounded-full border border-border bg-muted">
+            <Image
+              src="/icons/logo.png"
+              alt="Sudireddy"
+              fill
+              sizes="36px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        </Link>
 
-            </Link>
-
-        {/* Center — nav links pill */}
-        {/* <div className="flex items-center gap-1 border border-border rounded-full px-3 py-1.5 bg-card">
+        {/* Center — Navigation */}
+        {/* <div className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="px-3 py-1 text-sm text-muted-foreground hover:text-foreground rounded-full transition-colors"
+              className="
+                rounded-md
+                px-3
+                py-2
+                text-sm
+                text-muted-foreground
+                transition-colors
+                hover:bg-muted
+                hover:text-foreground
+              "
             >
               {link.label}
             </Link>
           ))}
         </div> */}
 
-        {/* Right — theme toggle */}
-        <ThemeToggle />
+        {/* Right — Search + Theme */}
+        <div className="ml-auto flex items-center gap-3">
+          <div className="hidden sm:block">
+            <NavbarSearch posts={posts} />
+          </div>
+
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
   );
