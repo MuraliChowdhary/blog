@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "@/components/ThemeToggle";
 // import { Search } from "lucide-react";
-// import NavbarSearch from "./NavbarSearch";
+import NavbarSearch from './NavbarSearch';
 import { SanityPost } from "@/lib/sanity/types";
 
 // const links = [
@@ -70,46 +70,13 @@ export default function Navbar({posts}:Props) {
     </Link>
 
     {/* Right controls */}
-    <div className="flex items-center gap-3">
-      {/* Search */}
-      <Link
-        href="/"
-        className="
-          hidden
-          h-11
-          w-[290px]
-          items-center
-          gap-3
-          rounded-full
-          border
-          border-border
-          px-4
-          text-sm
-          text-muted-foreground
-          transition-colors
-          hover:border-foreground/20
-          hover:text-foreground
-          sm:flex
-        "
-      >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="7" />
-          <path d="m20 20-4-4" />
-        </svg>
+    <div className="ml-auto flex items-center gap-3">
+          <div className="hidden sm:block">
+            <NavbarSearch posts={posts} />
+          </div>
 
-        <span>Search posts...</span>
-      </Link>
-
-      <ThemeToggle />
-    </div>
+          <ThemeToggle />
+        </div>
   </nav>
 </header>
   );
