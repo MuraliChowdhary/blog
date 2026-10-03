@@ -31,14 +31,20 @@ export default function BlogClient({ posts, tags }: Props) {
 
   return (
     <div
-      className="
-        grid
-        grid-cols-1
-        gap-12
-        lg:grid-cols-[190px_minmax(0,680px)_1fr]
-        lg:gap-14
-      "
-    >
+  className="
+    mx-auto
+    grid
+    max-w-6xl
+    grid-cols-1
+    gap-10
+    px-6
+    py-10
+    sm:px-8
+    lg:grid-cols-[190px_minmax(0,1fr)]
+    lg:gap-16
+    lg:py-14
+  "
+>
       {/* ====================================================== */}
       {/* LEFT — TOPICS                                          */}
       {/* ====================================================== */}

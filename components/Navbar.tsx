@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "@/components/ThemeToggle";
-import { Search } from "lucide-react";
-import NavbarSearch from "./NavbarSearch";
+// import { Search } from "lucide-react";
+// import NavbarSearch from "./NavbarSearch";
 import { SanityPost } from "@/lib/sanity/types";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
-];
+// const links = [
+//   { href: "/", label: "Home" },
+//   { href: "/", label: "Blog" },
+//   { href: "/about", label: "About" },
+// ];
 
 type Props = {
   posts: SanityPost[];
@@ -17,67 +17,100 @@ type Props = {
 
 export default function Navbar({posts}:Props) {
   return (
-    <header className="w-full border-b border-border">
-      <nav
+    <header
+  className="
+    w-full
+    border-b
+    border-border
+    bg-background
+  "
+>
+  <nav
+    className="
+      mx-auto
+      flex
+      h-[72px]
+      max-w-6xl
+      items-center
+      justify-between
+      px-6
+      sm:px-8
+    "
+  >
+    {/* Logo */}
+    <Link
+      href="/"
+      className="
+        inline-flex
+        items-center
+        transition-opacity
+        hover:opacity-75
+      "
+    >
+      <div
         className="
-          mx-auto
-          flex
-          max-w-5xl
-          items-center
-          justify-between
-          px-6
-          py-4
+          h-9
+          w-9
+          overflow-hidden
+          rounded-full
+          border
+          border-border
+          bg-muted
         "
       >
-        {/* Left — Logo */}
-        <Link
-          href="/"
-          className="flex shrink-0 items-center gap-3"
-          aria-label="Sudireddy home"
+        <Image
+          src="/icons/logo.png"
+          alt="Sudireddy"
+          width={36}
+          height={36}
+          priority
+          className="h-full w-full object-cover"
+        />
+      </div>
+    </Link>
+
+    {/* Right controls */}
+    <div className="flex items-center gap-3">
+      {/* Search */}
+      <Link
+        href="/"
+        className="
+          hidden
+          h-11
+          w-[290px]
+          items-center
+          gap-3
+          rounded-full
+          border
+          border-border
+          px-4
+          text-sm
+          text-muted-foreground
+          transition-colors
+          hover:border-foreground/20
+          hover:text-foreground
+          sm:flex
+        "
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          aria-hidden="true"
         >
-          <div className="relative h-9 w-9 overflow-hidden rounded-full border border-border bg-muted">
-            <Image
-              src="/icons/logo.png"
-              alt="Sudireddy"
-              fill
-              sizes="36px"
-              className="object-cover"
-              priority
-            />
-          </div>
-        </Link>
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-4-4" />
+        </svg>
 
-        {/* Center — Navigation */}
-        {/* <div className="hidden items-center gap-1 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="
-                rounded-md
-                px-3
-                py-2
-                text-sm
-                text-muted-foreground
-                transition-colors
-                hover:bg-muted
-                hover:text-foreground
-              "
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div> */}
+        <span>Search posts...</span>
+      </Link>
 
-        {/* Right — Search + Theme */}
-        <div className="ml-auto flex items-center gap-3">
-          <div className="hidden sm:block">
-            <NavbarSearch posts={posts} />
-          </div>
-
-          <ThemeToggle />
-        </div>
-      </nav>
-    </header>
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
   );
 }

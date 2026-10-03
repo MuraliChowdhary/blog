@@ -35,7 +35,7 @@ export default async function TagPage({
     <div className="max-w-2xl mx-auto px-6 py-12">
       <div className="mb-10">
         <Link
-          href="/blog"
+          href="/"
           className="text-xs text-muted-foreground hover:text-foreground transition-colors mb-4 inline-block"
         >
           ← All posts

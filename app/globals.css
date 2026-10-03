@@ -51,8 +51,8 @@
 :root {
   /* --font-serif: "Instrument Serif", Georgia, serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace; */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: #faf9f5;
+  --foreground: ...;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
